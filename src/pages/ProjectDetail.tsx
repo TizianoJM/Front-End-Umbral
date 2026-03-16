@@ -1,10 +1,15 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ChevronRight, MapPin, Calendar, User, Zap, CheckCircle2, ArrowLeft } from 'lucide-react';
-import { PROJECTS } from '../constants';
+import { useSiteData } from '../hooks/useSiteData';
 
 export default function ProjectDetail() {
   const { id } = useParams();
-  const project = PROJECTS.find(p => p.id === id);
+  const { projects, loading } = useSiteData();
+  const project = projects.find(p => p.id === id);
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Cargando...</div>;
+  }
 
   if (!project) {
     return <Navigate to="/proyectos" replace />;

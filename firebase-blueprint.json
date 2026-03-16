@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "SiteConfig": {
+      "title": "Configuración del Sitio",
+      "description": "Configuración global del sitio web",
+      "type": "object",
+      "properties": {
+        "homeHeaderPhoto": { "type": "string", "description": "URL de la foto de cabecera de inicio" },
+        "externalLink": { "type": "string", "description": "Link al sitio web externo del administrador" }
+      }
+    },
+    "Service": {
+      "title": "Servicio",
+      "description": "Servicios ofrecidos por Umbral Ingeniería",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "icon": { "type": "string" },
+        "description": { "type": "string" },
+        "features": { "type": "array", "items": { "type": "string" } },
+        "image": { "type": "string", "description": "Foto de cabecera del servicio" }
+      },
+      "required": ["id", "title", "description"]
+    },
+    "Project": {
+      "title": "Proyecto",
+      "description": "Proyectos realizados por Umbral Ingeniería",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string", "description": "Rubro" },
+        "description": { "type": "string" },
+        "fullDescription": { "type": "string" },
+        "image": { "type": "string", "description": "Foto de cabecera" },
+        "scope": { "type": "array", "items": { "type": "string" }, "description": "Alcances" },
+        "specs": { 
+          "type": "object", 
+          "properties": {
+            "sector": { "type": "string" },
+            "location": { "type": "string" },
+            "client": { "type": "string" },
+            "status": { "type": "string" },
+            "power": { "type": "string" }
+          },
+          "description": "Ficha técnica"
+        },
+        "gallery": { "type": "array", "items": { "type": "string" }, "description": "Fotos de su galería" }
+      },
+      "required": ["id", "title", "category"]
+    }
+  },
+  "firestore": {
+    "config/site": { "schema": "SiteConfig", "description": "Configuración única del sitio" },
+    "services": { "schema": "Service", "description": "Colección de servicios" },
+    "projects": { "schema": "Project", "description": "Colección de proyectos" }
+  }
+}

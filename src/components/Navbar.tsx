@@ -45,6 +45,12 @@ export function Navbar() {
               </HashLink>
             ))}
             <Link
+              to="/login"
+              className="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+            >
+              Iniciar Sesión
+            </Link>
+            <Link
               to="/contacto"
               className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-white transition-opacity hover:opacity-90"
             >
@@ -81,6 +87,13 @@ export function Navbar() {
                   {link.name}
                 </HashLink>
               ))}
+              <Link
+                to="/login"
+                className="block text-base font-medium text-slate-900"
+                onClick={() => setIsOpen(false)}
+              >
+                Iniciar Sesión
+              </Link>
               <Link
                 to="/contacto"
                 className="block w-full text-center py-3 rounded-lg bg-primary text-white font-bold"

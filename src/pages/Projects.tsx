@@ -1,16 +1,17 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
-import { PROJECTS } from '../constants';
+import { useSiteData } from '../hooks/useSiteData';
 import { ProjectCard } from '../components/ProjectCard';
 
 const CATEGORIES = ['Todos los Proyectos', 'Residencial', 'Infraestructura', 'Industrial', 'Renovables'];
 
 export default function Projects() {
+  const { projects } = useSiteData();
   const [activeCategory, setActiveCategory] = React.useState('Todos los Proyectos');
   const [searchQuery, setSearchQuery] = React.useState('');
 
-  const filteredProjects = PROJECTS.filter(project => {
+  const filteredProjects = projects.filter(project => {
     const matchesCategory = activeCategory === 'Todos los Proyectos' || project.category === activeCategory;
     const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           project.description.toLowerCase().includes(searchQuery.toLowerCase());

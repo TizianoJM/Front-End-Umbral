@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, Star, Verified, Phone, ShieldCheck, Clock, CreditCard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import { SERVICES, PROJECTS } from '../constants';
+import { useSiteData } from '../hooks/useSiteData';
 import { ServiceCard } from '../components/ServiceCard';
 import { ProjectCard } from '../components/ProjectCard';
 
@@ -13,6 +13,8 @@ const WHY_CHOOSE_US = [
 ];
 
 export default function Home() {
+  const { config, services, projects } = useSiteData();
+
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
@@ -72,7 +74,7 @@ export default function Home() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] border-8 border-white">
                 <img 
-                  src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1200" 
+                  src={config.homeHeaderPhoto} 
                   alt="Electrician working" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
@@ -137,7 +139,7 @@ export default function Home() {
             </HashLink>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {SERVICES.map((service) => (
+            {services.map((service) => (
               <ServiceCard key={service.id} service={service} />
             ))}
           </div>
@@ -152,7 +154,7 @@ export default function Home() {
             <p className="text-slate-600">Vea cómo hemos impulsado nuestra comunidad local con excelencia.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.slice(0, 3).map((project) => (
+            {projects.slice(0, 3).map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>
